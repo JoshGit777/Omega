@@ -1,7 +1,8 @@
 local Typings = {}
 
 export type NPCConfiguration = {
-	StateMachine: (self: NPC) -> nil,
+	CharacterStateMachine: ((self:NPC) -> nil)?,
+	Functionality: (self: NPC) -> nil,
 	Attributes: {},
 }
 
@@ -30,6 +31,9 @@ export type NPC = {
 	GroundController: GroundController,
 	ClimbController: ClimbController,
 	AirController: AirController,
+	SwimController: SwimController,
+
+	MoveDirection:Vector3,
 
 	Cache: { RBXScriptConnection & thread },
 
@@ -39,15 +43,23 @@ export type NPC = {
 	State: State,
 
 	LoadedStates: { State },
+
+	ID: number,
+}
+
+export type Identification = {
+	Registered: {[any]: any},
+	LastID: number
 }
 
 export type Omega = {
 	Entities: {},
 	ModelFolder: Folder,
 	ConfigurationFolder: Configuration,
-	RegisterModelFolder: (Folder: Folder) -> nil,
-	RegisterConfigurationFolder: (Folder: Folder) -> nil,
-	NPC: () -> NPC,
+	RegisterModelFolder: (self:Omega, Folder: Folder) -> nil,
+	RegisterConfigurationFolder: (self:Omega, Folder: Folder) -> nil,
+	NPC: (self: Omega, Name: string, SpawnCFrame: CFrame?) -> NPC,
+	Identification: Identification
 }
 
 return Typings

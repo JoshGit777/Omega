@@ -15,6 +15,10 @@
       }
     },
 
+    "ServerStorage":{
+      "$path": "src/serverstorage"
+    },
+
     "StarterPlayer": {
       "StarterPlayerScripts": {
         "Client": {
@@ -68,5 +72,6 @@
         "RespectFilteringEnabled": true
       }
     }
-  }
+  },
+  "servePort": 28515
 }
