@@ -2,9 +2,6 @@ name: Sync Omega Folder
 
 on:
   push:
-    paths:
-      - 'src/shared/Omega/**'
-      - '.github/workflows/copy-omega.yml' # allow workflow edits to trigger too
 
 jobs:
   sync-omega:
