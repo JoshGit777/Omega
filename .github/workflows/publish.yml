@@ -1,0 +1,29 @@
+name: Sync Omega Folder
+
+on:
+  push:
+    paths:
+      - 'src/shared/Omega/**'
+      - '.github/workflows/copy-omega.yml' # allow workflow edits to trigger too
+
+jobs:
+  sync-omega:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Copy Omega folder to root
+        run: |
+          rm -rf omega
+          cp -r src/shared/Omega omega
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          git add omega
+          git commit -m "Sync omega folder from src/shared/Omega" || echo "No changes to commit"
+          git push

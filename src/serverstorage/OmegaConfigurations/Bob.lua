@@ -4,8 +4,8 @@ local Omega = ReplicatedStorage.Shared:WaitForChild("Omega")
 local Typings = require(Omega.Typings)
 
 return {
-	Functionality = function()
-		print("Running functionality")
+	Functionality = function(self:Typings.NPC)
+		
 	end,
 	Attributes = {},
 } :: Typings.NPCConfiguration
