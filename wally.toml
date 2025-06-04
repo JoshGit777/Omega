@@ -1,7 +1,11 @@
 [package]
-name = "jding/omega"
-version = "0.1.0"
+name = "joshgit777/omega"
+version = "0.1.1"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
+
+exclude = ["build"]
+
+descriptions = "NPC System based on character controllers and state machines"
 
 [dependencies]
