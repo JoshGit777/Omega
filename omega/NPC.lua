@@ -92,6 +92,7 @@ function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): N
 
 	self.Configuration = require(self.ConfigurationModule) :: Typings.NPCConfiguration
 
+	--[[ Runs user functionality ]]
 	self.Configuration.Functionality(self)
 
 	if self.Configuration["CharacterStateMachine"] then
