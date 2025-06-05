@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[655],{4410:s=>{s.exports=JSON.parse('{"sourceUrl":"https://github.com/JoshGit777/Omega/blob/master","baseUrl":"/Omega/","classOrder":["Omega"],"apiCategories":[]}')}}]);
