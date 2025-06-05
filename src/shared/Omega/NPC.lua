@@ -11,6 +11,69 @@ NPC.__index = NPC
 
 type NPC = Typings.NPC
 
+--[=[
+@class NPC
+The NPC class. This is where all the entities are created and setup, with the framework, etc.
+]=]
+
+--- @prop RootModel Model
+--- @within NPC
+--- The model that the npc is loaded on
+--- Basically the npc in the game world NOTE THAT ON THE SERVER THE RENDER MODEL WILL NOT EXIST
+
+--- @prop RootPart BasePart
+--- @within NPC
+--- The npc's root part
+
+--- @prop ControllerManager ControllerManager
+--- @within NPC
+--- the NPC's controller manager, which is basically the Humanoid
+
+--- @prop GroundSensor ControllerPartSensor
+--- @within NPC
+--- The NPC's ground sensor, which is used to detect the floor of the NPC
+
+--- @prop LadderSensor ControllerPartSensor
+--- @within NPC
+--- The NPC's ladder sensor, which is used to detect the truss the NPC is climbing on
+
+--- @prop GroundController GroundController
+--- @within NPC
+--- The NPC's ground controller, which is used to handle ground movement
+
+--- @prop ClimbController ClimbController
+--- @within NPC
+--- The NPC's climb controller, which is used to handle climbing
+
+--- @prop AirController AirController
+--- @within NPC
+--- The NPC's air controller, which is used to handle air movement
+
+--- @prop SwimController SwimController
+--- @within NPC
+--- The NPC's swim controller, which is used to handle swim movement
+
+--- @prop Configuration NPCConfiguration
+--- @within NPC
+--- The configuration file of the NPC
+
+--- @prop ConfigurationModule ModuleScript
+--- @within NPC
+--- The configuration Module Script that is used to get Configuration
+
+--- @prop State State
+--- @within NPC
+--- The current state of the NPC
+
+--- @prop MoveDirection Vector3
+--- @within NPC
+--- The move direction of the NPC
+--- Only used if state machine is not overridden
+
+--- @prop LoadedStates {State}
+--- @within NPC
+--- The states that are loaded
+
 function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): NPC
 	local self: NPC = setmetatable({} :: any, Omega)
 
@@ -106,6 +169,9 @@ function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): N
 	return self
 end
 
+--[=[ 
+Destroys the selected NPC, and clears the cache
+]=]
 function NPC.Destroy(self: NPC)
 	for _, connection: thread & RBXScriptConnection in self.Cache do
 		local ConnectionType = typeof(connection)
