@@ -25,7 +25,7 @@ So we have this, to figure out what number is assosiated with what.
 
 
 function Identification.create(): Identification
-    if not Identification.Loaded then
+    if Identification.Loaded then
         return Identification.Loaded
     end
 
@@ -33,6 +33,8 @@ function Identification.create(): Identification
 
     self.Registered = {}
     self.LastID = -1
+
+    Identification.Loaded = self
 
     return self
 end
