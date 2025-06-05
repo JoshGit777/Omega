@@ -1,4 +1,5 @@
 --!strict
+local RunService = game:GetService("RunService")
 
 local Omega = {
 	Loaded = nil,
@@ -32,6 +33,11 @@ The main Omega API.
 --- @within Omega
 --- The identification (hashing) module
 
+--- @prop EntityFolder Folder
+--- @within Omega
+--- The folder containing all the entities
+
+
 function Omega.create(): Omega
 	if Omega.Loaded then
 		return Omega.Loaded
@@ -39,8 +45,16 @@ function Omega.create(): Omega
 
 	local self: Omega = setmetatable({} :: any, Omega)
 
+	if RunService:IsClient() then
+		return self
+	end
+
 	self.Entities = {}
 	self.Identification = Identification
+
+	self.EntityFolder = Instance.new("Folder")
+	self.EntityFolder.Name = "NPCS"
+	self.EntityFolder.Parent = workspace
 
 	return self
 end
