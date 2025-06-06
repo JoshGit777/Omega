@@ -45,6 +45,8 @@ export type NPC = {
 	LoadedStates: { State },
 
 	ID: number,
+
+	Destroy:(self:NPC) -> nil
 }
 
 export type Identification = {

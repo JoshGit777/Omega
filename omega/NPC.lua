@@ -1,11 +1,17 @@
 --!strict
 
+local RunService = game:GetService("RunService")
+
 local NPC = {}
 
 local OmegaModule = script.Parent
+local Remotes = OmegaModule:WaitForChild("Remotes")
+local ServerRemotes = require(Remotes:WaitForChild("server"))
 local Typings = require(OmegaModule:WaitForChild("Typings"))
 local StateMachine = require(OmegaModule:WaitForChild("StateMachine"))
 local StateHandler = require(OmegaModule:WaitForChild("StateHandler"))
+
+local AnimateNPC = ServerRemotes.AnimateNPC
 
 NPC.__index = NPC
 
@@ -106,7 +112,7 @@ function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): N
 		self.RootPart.CFrame = SpawnCFrame
 	end
 
-	self.RootPart.Transparency = 1
+	self.RootPart.Transparency = 0.5
 	self.RootPart.Size = BoundingBox
 	self.RootPart.CanCollide = true
 	self.RootPart.CanQuery = false
@@ -172,9 +178,30 @@ function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): N
 
 	self.RootModel.Name = tostring(self.ID)
 
+	self.RootModel.PrimaryPart = self.RootPart
+
 	self.RootModel.Parent = Omega.EntityFolder
 
+	self.RootPart:SetNetworkOwner(nil)
+
+	self.RootModel:SetAttribute("Class", Name)
+
+	self.RootModel.Destroying:Once(function()
+		self:Destroy()
+	end)
+
 	return self
+end
+
+--[=[  
+Animates the NPC
+@param Animation Animation
+]=]
+function NPC.Animate(self: NPC, Animation: Animation)
+	AnimateNPC.FireAll({
+		Model = self.RootModel,
+		Animation = Animation,
+	})
 end
 
 --[=[ 
