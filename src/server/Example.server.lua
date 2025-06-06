@@ -8,3 +8,7 @@ local Models = ReplicatedStorage:WaitForChild("NPCModels")
 Omega:RegisterConfigurationFolder(Configurations)
 Omega:RegisterModelFolder(Models)
 Omega:NPC("Bob", CFrame.new(0, 20, 0))
+
+while task.wait(0.42) do
+    Omega:NPC("Bob", CFrame.new(0, 20, 0))
+end

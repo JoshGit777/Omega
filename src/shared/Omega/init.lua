@@ -6,9 +6,21 @@ local Omega = {
 }
 Omega.__index = Omega
 
+if RunService:IsClient() then
+	print("OMEGA: Loading client")
+	local OmegaClient = script:WaitForChild("OmegaClient")
+	require(OmegaClient)
+	return {} :: any
+end
+
 local NPC = require(script:WaitForChild("NPC"))
 local Typings = require(script:WaitForChild("Typings"))
 local Identification = require(script:WaitForChild("Identification"))
+
+local Remotes = script:WaitForChild("Remotes")
+local RemoteServer = require(Remotes:WaitForChild("server"))
+
+local GetModelFolder = RemoteServer.GetModelFolder
 
 type Omega = Typings.Omega
 
@@ -55,6 +67,10 @@ function Omega.create(): Omega
 	self.EntityFolder = Instance.new("Folder")
 	self.EntityFolder.Name = "NPCS"
 	self.EntityFolder.Parent = workspace
+
+	GetModelFolder.On(function()
+		return self.ModelFolder
+	end)
 
 	return self
 end

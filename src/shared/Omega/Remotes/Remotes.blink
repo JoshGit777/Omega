@@ -1,0 +1,19 @@
+option ClientOutput = "./client"
+option ServerOutput = "./server"
+
+struct AnimationData {
+    Model: Instance?,
+    Animation: Instance,
+}
+
+event AnimateNPC {
+    From: Server,
+    Call: ManyAsync, 
+    Type: Reliable, 
+    Data: AnimationData,
+}
+
+function GetModelFolder {
+    Yield: Coroutine,
+    Return: Instance
+}

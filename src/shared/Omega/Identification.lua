@@ -47,6 +47,9 @@ end
 function Identification.Register(self:Identification, Value:any)
     local IDValue = self.LastID + 1
     self.Registered[IDValue] = Value
+
+    self.LastID += 1
+
     return IDValue
 end
 
