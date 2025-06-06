@@ -1,11 +1,11 @@
 [package]
 name = "joshgit777/omega"
-version = "0.1.5"
+version = "0.1.9"
 registry = "https://github.com/UpliftGames/wally-index"
 realm = "shared"
 
-exclude = ["build", "src"]
-include = ["src/shared/Omega"]
+include = ["omega", "wally.toml", "README.md"]
+exclude = ["**"]
 
 descriptions = "NPC System based on character controllers and state machines"
 
