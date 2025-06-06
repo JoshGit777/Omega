@@ -38,8 +38,8 @@ local function RenderModel(Model: Model)
 	if Model:FindFirstChild("RenderModel") then
 		return nil
 	end
-    
-    print("rendering " .. tostring(Model.Name))
+
+	print("rendering " .. tostring(Model.Name))
 
 	table.insert(RenderQuene, Model)
 
