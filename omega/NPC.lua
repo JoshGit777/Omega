@@ -74,6 +74,10 @@ The NPC class. This is where all the entities are created and setup, with the fr
 --- @within NPC
 --- The states that are loaded
 
+--- @prop ID number
+--- @within NPC
+--- The ID of the NPC
+
 function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): NPC
 	local self: NPC = setmetatable({} :: any, Omega)
 
@@ -164,7 +168,11 @@ function NPC.create(Omega: Typings.Omega, Name: string, SpawnCFrame: CFrame?): N
 		StateMachine(self)
 	end
 
-	self.RootModel.Parent = workspace
+	self.ID = Omega.Identification:Register(self)
+
+	self.RootModel.Name = tostring(self.ID)
+
+	self.RootModel.Parent = Omega.EntityFolder
 
 	return self
 end
